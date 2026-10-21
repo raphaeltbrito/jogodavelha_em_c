@@ -5,6 +5,7 @@
 
 int escolhaPosicao(Tabuleiro *t, int tipo) {
     int casa;
+    int caractere;
     int linha, coluna;
 
     if (tipo == xis) {
@@ -15,9 +16,9 @@ int escolhaPosicao(Tabuleiro *t, int tipo) {
 
     if (scanf("%d", &casa) != 1){
         printf("Insira um número inteiro!");
-        while ()
-        {
-            /* code */
+        caractere = getchar();
+        while (caractere != ("\n" && EOF )) {
+            caractere = getchar();
         }
         
         return 0;
