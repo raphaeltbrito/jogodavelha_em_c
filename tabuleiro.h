@@ -13,4 +13,6 @@ void inicializa (Tabuleiro *t);
 
 void desenhaTabuleiro (Tabuleiro *t);
 
+int temVencedor(Tabuleiro *t);
+
 #endif
