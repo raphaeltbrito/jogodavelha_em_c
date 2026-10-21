@@ -5,7 +5,8 @@
 void comecarPartida(Tabuleiro *t, int tipo) {
     printf("Primeiro jogador deseja ser qual figura (X/O): ")
     scanf("%d", &tipo)
-    if (tipo != (xis || bola)){
+    if (tipo != xis && tipo != bola) {
+        printf("Tipo invalido. Tente novamente!!");
         
     }
 }
