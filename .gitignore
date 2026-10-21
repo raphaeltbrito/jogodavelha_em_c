@@ -1,0 +1,17 @@
+# Executavel gerado pela compilacao
+/main
+/main.dSYM/
+
+# Arquivos intermediarios e bibliotecas compiladas
+*.o
+*.a
+*.so
+*.dylib
+
+# Arquivos do macOS
+.DS_Store
+
+# Arquivos temporarios de editores
+*~
+*.swp
+*.swo
