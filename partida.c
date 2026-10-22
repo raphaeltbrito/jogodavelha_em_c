@@ -2,19 +2,25 @@
 #include "jogador_teclado.h"
 #include "partida.h"
 #include "tabuleiro.h"
+#include "jogador_IA.h"
+
+
 void comecarPartida(Tabuleiro *t) {
     char figura;
     int count = 0;
     int tipo; 
     int vencedor = vazio;
+    int humano;
 
     do {
         printf("Primeiro jogador deseja ser qual figura (X/O): ");
         scanf(" %c", &figura);
         if (figura == 'X' ){
             tipo = xis;
+            humano = xis;
         } else if(figura == 'O') {
             tipo = bola;
+            humano = bola;
         }else {
             printf("Figura inválida. Tente Novamente!!!\n");
         }
@@ -23,9 +29,16 @@ void comecarPartida(Tabuleiro *t) {
 
     desenhaTabuleiro(t);
 
+    int jogou;
 
     while (count < 9) {
-        if (escolhaPosicao(t, tipo) == 1){
+        if (tipo != humano){
+        jogou = jogadaIA(t, tipo);
+        } else {
+        jogou = escolhaPosicao(t, tipo);
+    }
+
+        if (jogou == 1){
             count++;
 
             if (tipo == xis){
