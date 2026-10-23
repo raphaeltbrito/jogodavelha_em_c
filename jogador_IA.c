@@ -52,6 +52,52 @@ int regra1 (Tabuleiro *t, int tipo, int alvo){
 
 }
 
+int contaLinhas (Tabuleiro *t, int alvo){
+    int cont = 0;
+    for (int i = 0; i < 3; i++){
+        if (t -> matriz[i][0] + t -> matriz[i][1] + t -> matriz[i][2] == alvo){
+            cont++;
+        }
+    }
+    
+    for (int j = 0 ; j < 3 ; j++){
+        if (t -> matriz[0][j] + t -> matriz[1][j] + t -> matriz [2][j] == alvo){
+            cont++;
+        }
+    }
+
+    if (t -> matriz[0][0] + t -> matriz[1][1] + t -> matriz[2][2] == alvo){
+            cont++;
+    }
+
+    if (t -> matriz[0][2] + t -> matriz[1][1] + t -> matriz[2][0] == alvo){
+            cont++;
+    }
+
+    return cont;
+}
+
+int regra2(Tabuleiro *t, int tipo){
+    for (int i = 0; i < 3; i++){
+        for (int j = 0 ; j < 3 ; j++){
+            if (t -> matriz[i][j] == vazio){
+                t -> matriz[i][j] = tipo;
+                int linhas = contaLinhas(t, tipo * 2);
+                t -> matriz[i][j] = vazio;
+                if (linhas >= 2){
+                    t -> matriz[i][j] = tipo;
+                    printf("\njogador IA jogou na casa %d\n", i * 3 + j + 1);
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return 0;
+    
+}
+
+
 int jogadaIA(Tabuleiro *t, int tipo){
     int adversario;
     
@@ -69,6 +115,9 @@ int jogadaIA(Tabuleiro *t, int tipo){
         return 1;
     }
 
+    if (regra2(t, tipo)){
+        return 1;
+    }
 
     for (int i = 0; i < 3; i++){
             for (int j = 0 ; j < 3 ; j++){
