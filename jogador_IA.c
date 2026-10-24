@@ -151,6 +151,20 @@ int regra5(Tabuleiro *t, int tipo){
     return 0;
 }
 
+int regra6(Tabuleiro *t, int tipo){
+    for (int i = 0; i < 3; i++){
+            for (int j = 0 ; j < 3 ; j++){
+                if (t -> matriz[i][j] == vazio){
+                    t -> matriz[i][j] = tipo;
+                    printf("\njogador IA jogou na casa %d\n", i * 3 + j + 1);
+                    return 1;
+                }
+            }
+    }
+
+    return 0;
+}
+
 int jogadaIA(Tabuleiro *t, int tipo){
     int adversario;
     
@@ -184,14 +198,9 @@ int jogadaIA(Tabuleiro *t, int tipo){
         return 1;
     }
 
-    for (int i = 0; i < 3; i++){
-            for (int j = 0 ; j < 3 ; j++){
-                if (t -> matriz[i][j] == vazio){
-                    t -> matriz[i][j] = tipo;
-                    printf("\njogador IA jogou na casa %d\n", i * 3 + j + 1);
-                    return 1;
-                }
-            }
+    if (regra6(t, tipo)){
+        return 1;
     }
+    
     return 0;
 }
