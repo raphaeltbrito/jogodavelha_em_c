@@ -66,7 +66,6 @@ int escolhaPosicao(Tabuleiro *t, int tipo) {
         return 0 ;
     }
 
-    printf("Linha: %d & Coluna: %d\n\n", linha + 1, coluna + 1);
 
     if (t -> matriz[linha][coluna] == vazio){
         t -> matriz[linha][coluna] = tipo;
