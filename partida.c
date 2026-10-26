@@ -21,7 +21,7 @@ void comecarPartida(Tabuleiro *t) {
         } else if(figura == 'O') {
             tipo = bola;
             humano = bola;
-        }else {
+        } else {
             printf("Figura inválida. Tente Novamente!!!\n");
         }
     } while (figura != 'X' && figura != 'O');
