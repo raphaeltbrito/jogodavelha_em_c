@@ -15,8 +15,8 @@ void desenhaTabuleiro(Tabuleiro *t) {
 
     printf("\033[2J\033[H");
 
-    for (int i = 0; i < 3; i++){
-        for (int j = 0 ; j < 3 ; j++){
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0 ; j < 3 ; j++) {
             
             if (t -> matriz[i][j] == xis) printf(" X");
             else if (t -> matriz[i][j] == bola) printf(" O");
