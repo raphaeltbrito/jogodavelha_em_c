@@ -30,11 +30,15 @@ void comecarPartida(Tabuleiro *t) {
     desenhaTabuleiro(t);
 
     int jogou;
+    int casaIA;
 
     while (count < 9) {
+        casaIA = 0;
+
         if (tipo != humano){
-        jogou = jogadaIA(t, tipo);
-        } else {
+            casaIA = jogadaIA(t, tipo);
+            jogou = (casaIA != 0);
+    } else {
         jogou = escolhaPosicao(t, tipo);
     }
 
@@ -48,6 +52,10 @@ void comecarPartida(Tabuleiro *t) {
             }
 
             desenhaTabuleiro(t);
+            
+            if (casaIA != 0){
+                printf("O jogador IA jogou na casa %d\n", casaIA);
+            }
 
             vencedor = temVencedor(t);
             if (vencedor == xis) {

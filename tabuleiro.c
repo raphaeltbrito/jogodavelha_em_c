@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "tabuleiro.h"
+#include <stdlib.h>
 
 void inicializa(Tabuleiro *t) {
     for (int i = 0; i < 3; i++){
@@ -12,8 +13,11 @@ void inicializa(Tabuleiro *t) {
 
 void desenhaTabuleiro(Tabuleiro *t) {
     int casa = 1;
-
-    printf("\033[2J\033[H");
+    #ifdef _WIN32
+        system("cls");
+    #else
+        printf("\033[2J\033[H");
+    #endif
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0 ; j < 3 ; j++) {
@@ -29,8 +33,7 @@ void desenhaTabuleiro(Tabuleiro *t) {
 
     if (i < 2) printf("\n---+---+---\n");  
     
-    }
-
+    } 
     printf("\n");
 
 }
