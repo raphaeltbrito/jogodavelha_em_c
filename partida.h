@@ -3,6 +3,6 @@
 #include "tabuleiro.h"
 
 
-void comecarPartida(Tabuleiro *t);
+void comecarPartida(Tabuleiro *t, int modo);
 
 #endif
