@@ -82,11 +82,10 @@ int regra2(Tabuleiro *t, int tipo){
             if (t -> matriz[i][j] == vazio){
                 t -> matriz[i][j] = tipo;
                 linhas = contaLinhas(t, tipo * 2);
-                t -> matriz[i][j] = vazio;
-                if (linhas >= 2){
-                    t -> matriz[i][j] = tipo;
+                if (linhas >= 2) {
                     return i * 3 + j + 1;
-                }
+                }else {
+                    t -> matriz[i][j] = vazio;«                }
             }
         }
     }

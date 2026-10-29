@@ -49,9 +49,9 @@ void comecarPartida(Tabuleiro *t, int modo) {
 
         if (jogou == 0) {
             continue;
-        }
-
-        count++;
+           } 
+ 
+         count++;
 
         desenhaTabuleiro(t);
 
