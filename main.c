@@ -9,8 +9,8 @@ int main(void) {
 
     do {
         printf("\nEscolha o modo de jogo:\n");
-        printf("1 - Humano contra humano\n");
-        printf("2 - Humano contra IA\n");
+        printf(" [1] Humano contra humano\n");
+        printf(" [2] Humano contra IA\n");
         printf("Opcao: ");
         scanf("%d", &modo);
 

@@ -22,7 +22,7 @@ void comecarPartida(Tabuleiro *t, int modo) {
         }
             
         if (figura != 'X' && figura != 'O') {
-            printf("Figura inválida. Tente novamente!\n");
+            printf("\nFigura inválida. Tente novamente!\n");
         }
 
     } while (figura != 'X' && figura != 'O');
