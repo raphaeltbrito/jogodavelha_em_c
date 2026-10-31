@@ -8,67 +8,78 @@
 void comecarPartida(Partida *p) {
     char figura;
     int count = 0;
-    int tipo; 
-    int vencedor = vazio;
+    int tipo;
     int humano;
+    int vencedor = vazio;
+    int jogou;
+    int casaIA;
 
     do {
         printf("Primeiro jogador deseja ser qual figura (X/O): ");
-        scanf(" %c", &figura);
-        if (figura == 'X' ){
-            tipo = xis;
-            humano = xis;
-        } else if(figura == 'O') {
-            tipo = bola;
-            humano = bola;
-        } else {
-            printf("Figura inválida. Tente Novamente!!!\n");
+        
+        if ((scanf(" %c", &figura)) !=1){
+            return;
         }
+            
+        if (figura != 'X' && figura != 'O') {
+            printf("\nFigura inválida. Tente novamente!\n");
+        }
+
     } while (figura != 'X' && figura != 'O');
 
+    if (figura == 'X') {
+        tipo = xis;
+    } else {
+        tipo = bola;
+    }
+
+    humano = tipo;
 
     desenhaTabuleiro(t);
-
-    int jogou;
-    int casaIA;
 
     while (count < 9) {
         casaIA = 0;
 
-        if (tipo != humano){
+        if (modo == 2 && tipo != humano) {
             casaIA = jogadaIA(t, tipo);
             jogou = (casaIA != 0);
-    } else {
-        jogou = escolhaPosicao(t, tipo);
-    }
+        } else {
+            jogou = escolhaPosicao(t, tipo);
+        }
 
-        if (jogou == 1){
-            count++;
+        if (jogou == 0) {
+            continue;
+           } 
+ 
+         count++;
 
-            if (tipo == xis){
-                tipo = bola;
-            } else {
-                tipo = xis;
-            }
+        desenhaTabuleiro(t);
 
-            desenhaTabuleiro(t);
-            
-            if (casaIA != 0){
-                printf("O jogador IA jogou na casa %d\n", casaIA);
-            }
+        if (casaIA != 0) {
+            printf("\nJogador IA jogou na casa %d\n", casaIA);
+        }
 
-            vencedor = temVencedor(t);
-            if (vencedor == xis) {
-                printf("O vencedor foi X\n");
-                break;
-            } else if (vencedor == bola) {
-                printf("O vencedor foi O\n");
-                break;
-            } else if (vencedor != bola && vencedor != xis && count == 9){
-                printf("Deu empate!!!\n");
-            }
+        vencedor = temVencedor(t);
+
+        if (vencedor == xis) {
+            printf("O vencedor foi X!\n");
+            return;
+        }
+
+        if (vencedor == bola) {
+            printf("O vencedor foi O!\n");
+            return;
+        }
+
+        if (count == 9) {
+            printf("Deu empate!\n");
+            return;
+        }
+
+        if (tipo == xis) {
+            tipo = bola;
+        } else {
+            tipo = xis;
         }
     }
 }
-    
-

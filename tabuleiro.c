@@ -18,6 +18,8 @@ void desenhaTabuleiro(Tabuleiro *t) {
     #else
         printf("\033[2J\033[H");
     #endif
+    
+    printf("\n\n");
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0 ; j < 3 ; j++) {
