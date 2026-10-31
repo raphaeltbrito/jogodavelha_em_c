@@ -8,8 +8,6 @@
 void comecarPartida(Partida *p) {
     char figura;
     int count = 0;
-    int tipo;
-    int humano;
     int vencedor = vazio;
     int jogou;
     int casaIA;
@@ -28,23 +26,26 @@ void comecarPartida(Partida *p) {
     } while (figura != 'X' && figura != 'O');
 
     if (figura == 'X') {
-        tipo = xis;
+        p ->j1.tipo = xis;
+        p ->j2.tipo = bola;
     } else {
-        tipo = bola;
+         p ->j1.tipo = bola;
+         p ->j2.tipo = xis;
     }
 
-    humano = tipo;
+    Jogador *jogadorAtual = &p->j1;
 
-    desenhaTabuleiro(t);
+
+    desenhaTabuleiro(&p->tab);
 
     while (count < 9) {
         casaIA = 0;
 
-        if (modo == 2 && tipo != humano) {
-            casaIA = jogadaIA(t, tipo);
+        if (jogadorAtual -> modo == IA) {
+            casaIA = jogadaIA(&p ->tab, jogadorAtual->tipo);
             jogou = (casaIA != 0);
         } else {
-            jogou = escolhaPosicao(t, tipo);
+            jogou = escolhaPosicao(&p ->tab, jogadorAtual->tipo);
         }
 
         if (jogou == 0) {
@@ -53,13 +54,13 @@ void comecarPartida(Partida *p) {
  
          count++;
 
-        desenhaTabuleiro(t);
+        desenhaTabuleiro(&p ->tab);
 
         if (casaIA != 0) {
             printf("\nJogador IA jogou na casa %d\n", casaIA);
         }
 
-        vencedor = temVencedor(t);
+        vencedor = temVencedor(&p -> tab);
 
         if (vencedor == xis) {
             printf("O vencedor foi X!\n");
@@ -76,10 +77,10 @@ void comecarPartida(Partida *p) {
             return;
         }
 
-        if (tipo == xis) {
-            tipo = bola;
+        if (jogadorAtual == &p->j1) {
+            jogadorAtual = &p->j2;
         } else {
-            tipo = xis;
+           jogadorAtual = &p->j1;
         }
     }
 }

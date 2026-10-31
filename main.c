@@ -4,9 +4,8 @@
 #include "partida.h"
 
 int main(void) {
-    Tabuleiro t;
+    Partida p;
     int modo = 0;
-
     do {
         printf("\nEscolha o modo de jogo:\n");
         printf(" [1] Humano contra humano\n");
@@ -19,8 +18,16 @@ int main(void) {
         }
     } while (modo != 1 && modo != 2);
 
-    inicializa(&t);
-    comecarPartida(&t, modo);
+    p.j1.modo = TECLADO;
+
+    if (modo == 1) {
+        p.j2.modo = TECLADO;
+    } else {
+        p.j2.modo = IA;
+    }
+
+    inicializa(&p.tab);
+    comecarPartida(&p);
 
     return 0;
 }

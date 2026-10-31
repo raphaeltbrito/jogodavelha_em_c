@@ -7,7 +7,6 @@ int regra1 (Tabuleiro *t, int tipo, int alvo){
             for (int j = 0 ; j < 3 ; j++){
                 if (t -> matriz[i][j] == vazio){
                     t -> matriz[i][j] = tipo;
-                    printf("\njogador IA jogou na casa %d\n", i * 3 + j + 1);
                     return i * 3 + j + 1 ;
                 }
             }
@@ -19,7 +18,6 @@ int regra1 (Tabuleiro *t, int tipo, int alvo){
             for (int i = 0; i < 3; i++){
                 if (t -> matriz[i][j] == vazio){
                     t -> matriz[i][j] = tipo;
-                    printf("\njogador IA jogou na casa %d\n", i * 3 + j + 1);
                     return i * 3 + j + 1;
                 }
             }
@@ -85,7 +83,7 @@ int regra2(Tabuleiro *t, int tipo){
                 if (linhas >= 2) {
                     return i * 3 + j + 1;
                 }else {
-                    t -> matriz[i][j] = vazio;«                }
+                    t -> matriz[i][j] = vazio;              }
             }
         }
     }
@@ -105,19 +103,15 @@ int regra3(Tabuleiro *t, int tipo){
 int regra4(Tabuleiro *t, int tipo, int adversario){
     if (t -> matriz[0][0] == adversario && t -> matriz[2][2] == vazio){
         t -> matriz[2][2] = tipo;
-        printf("\njogador IA jogou na casa 9\n");
         return 9;
     } else if (t -> matriz[0][2] == adversario && t -> matriz[2][0] == vazio){
         t -> matriz[2][0] = tipo;
-        printf("\njogador IA jogou na casa 7\n");
         return 7;
     } else if (t -> matriz[2][0] == adversario && t -> matriz[0][2] == vazio){
         t -> matriz[0][2] = tipo;
-        printf("\njogador IA jogou na casa 3\n");
         return 3;
     } else if (t -> matriz[2][2] == adversario && t -> matriz[0][0] == vazio){
         t -> matriz[0][0] = tipo;
-        printf("\njogador IA jogou na casa 1\n");
         return 1;
         }
 
@@ -127,19 +121,15 @@ int regra4(Tabuleiro *t, int tipo, int adversario){
 int regra5(Tabuleiro *t, int tipo){
     if (t -> matriz[0][0] == vazio){
         t -> matriz[0][0] = tipo;
-        printf("\njogador IA jogou na casa 1\n");
         return 1;
     } else if (t -> matriz[0][2] == vazio){
         t -> matriz[0][2] = tipo;
-        printf("\njogador IA jogou na casa 3\n");
         return 3;
     } else if (t -> matriz[2][0] == vazio){
         t -> matriz[2][0] = tipo;
-        printf("\njogador IA jogou na casa 7\n");
         return 7;
     } else if (t -> matriz[2][2] == vazio){
         t -> matriz[2][2] = tipo;
-        printf("\njogador IA jogou na casa 9\n");
         return 9;
     }
 
@@ -151,7 +141,6 @@ int regra6(Tabuleiro *t, int tipo){
             for (int j = 0 ; j < 3 ; j++){
                 if (t -> matriz[i][j] == vazio){
                     t -> matriz[i][j] = tipo;
-                    printf("\njogador IA jogou na casa %d\n", i * 3 + j + 1);
                     return i * 3 + j + 1;
                 }
             }

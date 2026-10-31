@@ -8,6 +8,6 @@ typedef struct {
     Jogador j2;
 } Partida;
 
-void comecarPartida(Tabuleiro *t, int modo);
+void comecarPartida(Partida *p);
 
 #endif
