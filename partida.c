@@ -5,7 +5,7 @@
 #include "jogador_IA.h"
 
 
-void comecarPartida(Tabuleiro *t) {
+void comecarPartida(Partida *p) {
     char figura;
     int count = 0;
     int tipo; 
