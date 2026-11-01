@@ -7,7 +7,7 @@
 #define PORTA 8080
 
 int main (){
-    SOCKET sock, sock_cliente;
+    SOCKET sockfd, client_fd;
     WSADATA wsaData;
     int resultado; 
     
@@ -19,8 +19,8 @@ int main (){
         printf("WINSOCK ligado, tudo certo");
     }
 
-    sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock == INVALID_SOCKET){
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd == INVALID_SOCKET){
         printf("há algum erro na criacao do socket");
         WSACleanup();
         return 1;
@@ -33,34 +33,34 @@ int main (){
     endereco.sin_addr.s_addr = INADDR_ANY;
     endereco.sin_port = htons(PORTA);
 
-    if (bind(sock, (struct sockaddr *)&endereco, sizeof(endereco)) == SOCKET_ERROR) {
+    if (bind(sockfd, (struct sockaddr *)&endereco, sizeof(endereco)) == SOCKET_ERROR) {
         printf("\nErro no bind");
-        closesocket(sock);
+        closesocket(sockfd);
         WSACleanup();
         return 1;
     }
 
-    if (listen(sock, 1) == SOCKET_ERROR) {
+    if (listen(sockfd, 1) == SOCKET_ERROR) {
         printf("\nErro no listen\n");
-        closesocket(sock);
+        closesocket(sockfd);
         WSACleanup();
         return 1;
     }
     
     printf("Servidor aguardando conexao na porta %d...\n", PORTA);
 
-    sock_cliente = accept(sock, (struct sockaddr *)&endereco, &endereco_len);
-    if (sock_cliente == INVALID_SOCKET) {
+    client_fd = accept(sockfd, (struct sockaddr *)&endereco, &endereco_len);
+    if (client_fd == INVALID_SOCKET) {
         printf("Erro no accept\n");
-        closesocket(sock);
+        closesocket(sockfd);
         WSACleanup();
         return 1;
     }
 
     printf("Cliente conectado!\n");
 
-    closesocket(sock);
-    closesocket(sock_cliente);
+    closesocket(sockfd);
+    closesocket(client_fd);
     WSACleanup();
     return 0;
 }

@@ -7,7 +7,7 @@
 #define PORTA 8080 
 
 int main(){
-    SOCKET sock;
+    SOCKET sockfd;
     WSADATA wsaData;
     int resultado; 
     
@@ -24,8 +24,8 @@ int main(){
     servidor.sin_family = AF_INET;
     servidor.sin_port = htons(PORTA);
 
-    sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock == INVALID_SOCKET){
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd == INVALID_SOCKET){
         printf("há algum erro na criacao do socket");
         WSACleanup();
         return 1;
@@ -33,21 +33,21 @@ int main(){
 
     if (inet_pton(AF_INET, "127.0.0.1", &servidor.sin_addr) <= 0) {
         printf("\nEndereco invalido\n");
-        closesocket(sock);
+        closesocket(sockfd);
         WSACleanup();
         return 1;
     }
 
-    if (connect(sock, (struct sockaddr *)&servidor, sizeof(servidor)) == SOCKET_ERROR) {
+    if (connect(sockfd, (struct sockaddr *)&servidor, sizeof(servidor)) == SOCKET_ERROR) {
         printf("\nErro ao conectar\n");
-        closesocket(sock);
+        closesocket(sockfd);
         WSACleanup();
         return 1;
     }
 
     printf("\nConectado ao servidor!\n");
 
-    closesocket(sock);
+    closesocket(sockfd);
     WSACleanup();
     return 0;
 
