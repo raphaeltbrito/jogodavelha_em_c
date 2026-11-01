@@ -47,7 +47,7 @@ int main (){
         return 1;
     }
     
-    printf("Servidor aguardando conexao na porta %d...\n", PORTA);
+    printf("\nServidor aguardando conexao na porta %d...\n", PORTA);
 
     client_fd = accept(sockfd, (struct sockaddr *)&endereco, &endereco_len);
     if (client_fd == INVALID_SOCKET) {
@@ -58,6 +58,14 @@ int main (){
     }
 
     printf("Cliente conectado!\n");
+
+    int envia = 7;
+    send(client_fd, (const char *) &envia, sizeof(envia), 0);
+
+    int teste2 = 0;
+
+    recv(client_fd, (char *)&teste2, sizeof(teste2), 0);
+    printf("Recebi: %d\n", teste2);
 
     closesocket(sockfd);
     closesocket(client_fd);

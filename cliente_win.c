@@ -31,12 +31,7 @@ int main(){
         return 1;
     }
 
-    if (inet_pton(AF_INET, "127.0.0.1", &servidor.sin_addr) <= 0) {
-        printf("\nEndereco invalido\n");
-        closesocket(sockfd);
-        WSACleanup();
-        return 1;
-    }
+    servidor.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     if (connect(sockfd, (struct sockaddr *)&servidor, sizeof(servidor)) == SOCKET_ERROR) {
         printf("\nErro ao conectar\n");
@@ -46,6 +41,13 @@ int main(){
     }
 
     printf("\nConectado ao servidor!\n");
+
+    int recebido = 0;
+    recv(sockfd, (char *)&recebido, sizeof(recebido), 0);
+    printf("Recebi: %d\n", recebido);
+
+    int teste = 5;
+    send(sockfd, (const char *) &teste, sizeof(teste), 0);
 
     closesocket(sockfd);
     WSACleanup();
