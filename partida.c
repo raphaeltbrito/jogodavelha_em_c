@@ -10,7 +10,7 @@ void comecarPartida(Partida *p) {
     int count = 0;
     int vencedor = vazio;
     int jogou;
-    int casaIA;
+    int casaIA, casaTeclado;
 
     do {
         printf("Primeiro jogador deseja ser qual figura (X/O): ");
@@ -40,12 +40,13 @@ void comecarPartida(Partida *p) {
 
     while (count < 9) {
         casaIA = 0;
+        casaTeclado = 0; 
 
         if (jogadorAtual -> modo == IA) {
             casaIA = jogadaIA(&p ->tab, jogadorAtual->tipo);
             jogou = (casaIA != 0);
         } else {
-            jogou = escolhaPosicao(&p ->tab, jogadorAtual->tipo);
+            jogou = escolhaPosicao(&p ->tab, jogadorAtual->tipo, &casaTeclado);
         }
 
         if (jogou == 0) {
@@ -58,6 +59,12 @@ void comecarPartida(Partida *p) {
 
         if (casaIA != 0) {
             printf("\nJogador IA jogou na casa %d\n", casaIA);
+        } else if (casaTeclado != 0) {
+            if (jogadorAtual->tipo == xis) {
+                printf("\nJogador X colocou na casa %d\n", casaTeclado);
+            } else {
+                printf("\nJogador O colocou na casa %d\n", casaTeclado);
+            }
         }
 
         vencedor = temVencedor(&p -> tab);

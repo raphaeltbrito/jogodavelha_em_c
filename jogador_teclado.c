@@ -3,9 +3,10 @@
 #include "tabuleiro.h"
 
 
-int escolhaPosicao(Tabuleiro *t, int tipo) {
+int escolhaPosicao(Tabuleiro *t, int tipo, int *casaJogada) {
     int casa;
-    int linha, coluna;
+    int jogou;
+    *casaJogada = 0;
 
     if (tipo == xis) {
         printf("\nJogador X selecione a casa que deseja inserir (escolha de 1 a 9): ");
@@ -14,64 +15,14 @@ int escolhaPosicao(Tabuleiro *t, int tipo) {
     }
     
     scanf("%d", &casa);
-    
-    switch (casa){
-        case 1:
-        linha = 0;
-        coluna = 0;
-        break;
 
-        case 2:
-        linha = 0;
-        coluna = 1;
-        break;
+    jogou = marcaJogada(t, casa , tipo);
 
-        case 3:
-        linha = 0;
-        coluna = 2;
-        break;
-
-        case 4:
-        linha = 1;
-        coluna = 0;
-        break;
-
-        case 5:
-        linha = 1;
-        coluna = 1;
-        break;
-
-        case 6:
-        linha = 1;
-        coluna = 2;
-        break;
-
-        case 7:
-        linha = 2;
-        coluna = 0;
-        break;
-
-        case 8:
-        linha = 2;
-        coluna = 1;
-        break;
-
-        case 9:
-        linha = 2;
-        coluna = 2;
-        break;
-
-        default:
-        printf("Casa inválida\n");
-        return 0 ;
-    }
-
-
-    if (t -> matriz[linha][coluna] == vazio){
-        t -> matriz[linha][coluna] = tipo;
+    if (jogou == 1){
+        *casaJogada = casa;
         return 1;
     } else {
-        printf("Esta casa já está ocupada");
+        printf("Esta casa já está ocupada ou invalida");
         return 0;
     }
 }

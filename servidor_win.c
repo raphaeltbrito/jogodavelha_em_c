@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#include "jogador_remoto.h"
+#include "tabuleiro.h"
+#include "partida_remota.h"
 
 #define PORTA 8080
 
 int main (){
     SOCKET sockfd, client_fd;
     WSADATA wsaData;
-    int resultado; 
+    int resultado;
     
     resultado = WSAStartup(MAKEWORD(2,2), &wsaData);
     if (resultado != 0){
@@ -57,16 +60,15 @@ int main (){
 
     printf("Cliente conectado!\n");
 
-    int envia = 7;
-    send(client_fd, (const char *) &envia, sizeof(envia), 0);
+    Partida p;
 
-    int teste2 = 0;
+    inicializa(&p.tab);
 
-    recv(client_fd, (char *)&teste2, sizeof(teste2), 0);
-    printf("Recebi: %d\n", teste2);
+    p.j1.tipo = xis;
+    p.j1.modo = TECLADO;
 
-    closesocket(sockfd);
-    closesocket(client_fd);
-    WSACleanup();
-    return 0;
+    p.j2.tipo = bola;
+    p.j2.modo = REMOTO;
+
+    comecarPartidaRemota(&p, client_fd);
 }

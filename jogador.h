@@ -4,6 +4,7 @@
 #include "tabuleiro.h"
 #define TECLADO 1
 #define IA 2
+#define REMOTO 3
 
 typedef struct {
     int tipo;

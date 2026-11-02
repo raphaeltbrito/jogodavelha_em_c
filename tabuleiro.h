@@ -15,4 +15,6 @@ void desenhaTabuleiro (Tabuleiro *t);
 
 int temVencedor(Tabuleiro *t);
 
+int marcaJogada(Tabuleiro *t, int casa, int tipo);
+
 #endif

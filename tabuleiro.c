@@ -62,3 +62,20 @@ int temVencedor(Tabuleiro *t) {
 
     return vazio;
 }  
+
+int marcaJogada(Tabuleiro *t, int casa, int tipo){
+    if (casa < 1 || casa > 9) {
+        return 0;
+    }
+    
+    int linha, coluna;
+    linha = (casa - 1) / 3;
+    coluna = (casa - 1) % 3;
+
+    if (t->matriz[linha][coluna] == vazio){
+        t -> matriz[linha][coluna] = tipo;
+        return 1;
+    }else {
+        return 0;
+    }
+}
