@@ -1,5 +1,4 @@
 #include "jogador_remoto.h"
-#include <stdio.h>
 
 int enviaJogada(Conexao conexao, int casa) {
     unsigned char mensagem;
