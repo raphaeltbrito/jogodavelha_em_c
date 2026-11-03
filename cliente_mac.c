@@ -9,7 +9,7 @@
 #include "partida_remota.h"
 
 #define PORTA 8080
-#define IP_SERVIDOR "192.168.15.67"
+#define IP_SERVIDOR "10.204.156.120"
 
 int main(void) {
     Conexao sockfd;
