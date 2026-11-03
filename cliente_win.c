@@ -59,4 +59,8 @@ int main(){
 
     comecarPartidaRemota(&p, sockfd);
 
+    closesocket(sockfd);
+    WSACleanup();
+    return 0;
+
 }
