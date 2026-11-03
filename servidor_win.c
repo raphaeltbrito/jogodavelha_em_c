@@ -71,4 +71,9 @@ int main (){
     p.j2.modo = REMOTO;
 
     comecarPartidaRemota(&p, client_fd);
+
+    closesocket(sockfd);
+    closesocket(client_fd);
+    WSACleanup();
+    return 0;
 }
